@@ -13,6 +13,7 @@ from email.parser import BytesParser
 from .models import default
 import email.utils
 import openai
+from django.http import JsonResponse
 import subprocess
 import base64
 import datetime
@@ -160,34 +161,10 @@ def fetch(request):
 
                 default(uemail=user, receiver=receiver, sender=sender.replace("<","(").replace('>',")"), subject=subject, time=str(pst_time).rsplit('-', 1)[0]).save()
                 
-                # subject = ""
-                # sender = ""
-                # date_str = ""
-                # pst_time = ""
-                # for header in msg['payload']['headers']:
-                #     if header['name'] == 'From':
-                #         sender = header['value']
-                #     elif header['name'] == 'Subject':
-                #         subject = header['value']
-                #     elif header['name'] == 'Date':
-                #         try:
-                #             date_str = header['value']
-                            
-                #             date_str = date_str.rsplit(' ', 1)[0]
-                #             received_time_utc = datetime.datetime.strptime(date_str, "%a, %d %b %Y %H:%M:%S")
-                #             pacific_tz = pytz.timezone('US/Pacific')
-                #             pst_time = received_time_utc.astimezone(pacific_tz)
-                #         except:
-                #             pass
-                
-                #         default(uemail="edvin@ingeniousassetgroup.com", sender=sender.replace("<","(").replace('>',")"), subject=subject, time=str(pst_time).rsplit('-', 1)[0]).save()
-
-                # if get_completion("tell me if this text is a complaint or not by simply stating True or False: " + str(body)):
-                #     default(uemail=email, sender=sender.replace("<","(").replace('>',")"), subject=subject, time=str(pst_time).rsplit('-', 1)[0], replied=False).save() 
-                #     exit()
+               
     
     for i in user_list:
         main(i)
 
-    return HttpResponse("all ok")
+    return JsonResponse({"status":"ok"})
 
