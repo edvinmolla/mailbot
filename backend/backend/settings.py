@@ -18,6 +18,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-rolg#cd8!180q!v#+_%y50hcz6tr*erj*srk#vrg9ht7z=y=09
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rapidbot.us', '137.184.232.142']
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'allauth',
+    "django_extensions",
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
@@ -147,6 +149,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
